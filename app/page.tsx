@@ -1,65 +1,315 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Star, Zap, BarChart3, Smartphone, Lock, Globe } from "lucide-react";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center px-6 py-20">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+        </div>
+
+        <motion.div
+          className="relative max-w-4xl mx-auto text-center space-y-8"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          {/* Badge */}
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-6 py-2 shadow-sm hover:shadow-md transition"
+          >
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-gray-700">
+              Trusted by 5000+ businesses worldwide
+            </span>
+          </motion.div>
+
+          {/* Main Headline */}
+          <motion.h1
+            variants={item}
+            className="text-6xl md:text-7xl font-bold tracking-tight leading-tight text-black"
+          >
+            Grow Your Google Reviews With{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              AI & QR Codes
+            </span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            variants={item}
+            className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
+          >
+            AI-powered Google review generation, QR management, analytics, and SEO optimization for modern local businesses.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={item}
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          >
+            <Link
+              href="/register"
+              className="px-8 py-4 bg-black text-white rounded-2xl font-semibold hover:bg-gray-900 transition inline-flex items-center justify-center gap-2"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <Zap size={20} />
+              Start Free
+            </Link>
+            <Link
+              href="/best/restaurant/new-york"
+              className="px-8 py-4 bg-white border-2 border-gray-300 text-black rounded-2xl font-semibold hover:border-gray-400 transition"
             >
-              Learning
-            </a>{" "}
-            center.
+              View Demo
+            </Link>
+          </motion.div>
+
+          {/* Trust Badges */}
+          <motion.div
+            variants={item}
+            className="flex flex-wrap gap-8 justify-center pt-12 text-sm text-gray-600"
+          >
+            <div className="flex items-center gap-2">
+              <Lock size={16} />
+              No credit card required
+            </div>
+            <div className="flex items-center gap-2">
+              <Globe size={16} />
+              Works worldwide
+            </div>
+            <div className="flex items-center gap-2">
+              <Star size={16} />
+              4.9 rating
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Floating Cards Animation */}
+        <motion.div
+          className="absolute top-1/4 right-10 w-32 h-32 bg-white rounded-2xl shadow-xl p-4 hidden lg:block"
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+        >
+          <div className="text-2xl mb-2">📊</div>
+          <p className="text-xs text-gray-600">Analytics</p>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-1/4 left-10 w-32 h-32 bg-blue-100 rounded-2xl shadow-xl p-4 hidden lg:block"
+          animate={{ y: [0, 20, 0] }}
+          transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+        >
+          <div className="text-2xl mb-2">⭐</div>
+          <p className="text-xs text-gray-700">AI Reviews</p>
+        </motion.div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl font-bold text-black mb-4">
+              Powerful Features for Local Businesses
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Everything you need to grow your business reviews and local SEO
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                icon: "⚡",
+                title: "AI Review Generation",
+                description: "Automatically polish customer feedback into professional Google reviews",
+              },
+              {
+                icon: "📱",
+                title: "QR Code Management",
+                description: "Generate, track, and share QR codes for your business instantly",
+              },
+              {
+                icon: "📊",
+                title: "Real-time Analytics",
+                description: "Track QR scans, conversions, and customer engagement metrics",
+              },
+              {
+                icon: "🔍",
+                title: "SEO Optimization",
+                description: "Get discovered by local customers with SEO-optimized pages",
+              },
+              {
+                icon: "🎯",
+                title: "Multi-Business Support",
+                description: "Manage multiple businesses from one powerful dashboard",
+              },
+              {
+                icon: "🛡️",
+                title: "Enterprise Security",
+                description: "Bank-level encryption and secure data storage for peace of mind",
+              },
+            ].map((feature, idx) => (
+              <motion.div
+                key={idx}
+                variants={item}
+                className="p-8 rounded-2xl border border-gray-200 hover:border-blue-500 hover:shadow-lg transition group"
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition">{feature.icon}</div>
+                <h3 className="text-xl font-semibold text-black mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-24 px-6 bg-gradient-to-r from-black to-gray-900 text-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="grid md:grid-cols-4 gap-8 text-center"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            {[
+              { number: "50M+", label: "Reviews Generated" },
+              { number: "5000+", label: "Businesses" },
+              { number: "98%", label: "Conversion Rate" },
+              { number: "24/7", label: "Support" },
+            ].map((stat, idx) => (
+              <motion.div key={idx} variants={item}>
+                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
+                <p className="text-gray-300">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-24 px-6 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl font-bold text-black mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-xl text-gray-600">No hidden fees. Cancel anytime.</p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-3 gap-8"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                name: "Starter",
+                price: "Free",
+                features: ["1 Business", "Basic Analytics", "QR Codes", "Email Support"],
+              },
+              {
+                name: "Professional",
+                price: "$29/mo",
+                features: ["Unlimited Businesses", "Advanced Analytics", "Priority Support", "Custom Domain"],
+                highlighted: true,
+              },
+              {
+                name: "Enterprise",
+                price: "Custom",
+                features: ["Everything in Pro", "Dedicated Support", "API Access", "Custom Integration"],
+              },
+            ].map((plan, idx) => (
+              <motion.div
+                key={idx}
+                variants={item}
+                className={`rounded-2xl p-8 border-2 transition ${
+                  plan.highlighted
+                    ? "border-blue-600 bg-white shadow-xl scale-105"
+                    : "border-gray-200 bg-white"
+                }`}
+              >
+                <h3 className="text-2xl font-bold text-black mb-2">{plan.name}</h3>
+                <div className="text-4xl font-bold text-black mb-6">{plan.price}</div>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-gray-700">
+                      <Star size={16} className="text-blue-600" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button className={`w-full py-3 rounded-lg font-semibold transition ${
+                  plan.highlighted
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-gray-100 text-black hover:bg-gray-200"
+                }`}>
+                  Get Started
+                </button>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-6 bg-black text-white text-center">
+        <motion.div
+          className="max-w-2xl mx-auto space-y-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-5xl font-bold">Ready to Grow Your Reviews?</h2>
+          <p className="text-xl text-gray-300">
+            Join thousands of local businesses using ReviewBoost AI to boost their Google ratings.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/register"
+            className="inline-block px-8 py-4 bg-blue-600 text-white rounded-2xl font-semibold hover:bg-blue-700 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Start Free Trial
+          </Link>
+        </motion.div>
+      </section>
+    </main>
   );
 }
