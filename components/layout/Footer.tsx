@@ -1,115 +1,101 @@
-"use client";
-
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Globe, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Company */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">ReviewBoost AI</h3>
-            <p className="text-gray-400 text-sm">
-              AI-powered Google review and local SEO platform for modern businesses
+    <footer className="bg-black px-6 py-14 text-white">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 md:grid-cols-4">
+          <section className="space-y-3">
+            <h2 className="text-lg font-semibold">ReviewBoost AI</h2>
+            <p className="text-sm text-gray-400">
+              AI-powered review growth and local SEO software for modern service businesses.
             </p>
-            {/* <div className="flex gap-4">
-              <a href="#" className="hover:text-blue-400 transition">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="hover:text-blue-400 transition">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="hover:text-blue-400 transition">
-                <Github size={20} />
-              </a>
-            </div> */}
-          </div>
+          </section>
 
-          {/* Product */}
-          <div className="space-y-4">
-            <h4 className="font-semibold">Product</h4>
+          <section className="space-y-3">
+            <h3 className="font-semibold">Platform</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <Link href="/features" className="hover:text-white transition">
-                  Features
+                <Link href="/" className="transition hover:text-white">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="hover:text-white transition">
-                  Pricing
+                <Link href="/best/restaurant/new-york" className="transition hover:text-white">
+                  SEO Demo
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="hover:text-white transition">
-                  Documentation
+                <Link href="/dashboard" className="transition hover:text-white">
+                  Dashboard
                 </Link>
               </li>
             </ul>
-          </div>
+          </section>
 
-          {/* Company */}
-          <div className="space-y-4">
-            <h4 className="font-semibold">Company</h4>
+          <section className="space-y-3">
+            <h3 className="font-semibold">Company</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <Link href="/about-us" className="hover:text-white transition">
-                  About
+                <Link href="/about-us" className="transition hover:text-white">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-white transition">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/careers" className="hover:text-white transition">
-                  Careers
+                <Link href="/contact-us" className="transition hover:text-white">
+                  Contact Us
                 </Link>
               </li>
             </ul>
-          </div>
+          </section>
 
-          {/* Legal */}
-          <div className="space-y-4">
-            <h4 className="font-semibold">Legal</h4>
+          <section className="space-y-3">
+            <h3 className="font-semibold">Legal</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <Link href="/privacy-policy" className="hover:text-white transition">
-                  Privacy
+                <Link href="/privacy-policy" className="transition hover:text-white">
+                  Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-white transition">
-                  Terms
+                <Link href="/terms" className="transition hover:text-white">
+                  Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="hover:text-white transition">
-                  Contact
+                <Link href="/disclaimer" className="transition hover:text-white">
+                  Disclaimer
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy" className="transition hover:text-white">
+                  Cookie Policy
                 </Link>
               </li>
             </ul>
-          </div>
+          </section>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-800 pt-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-sm text-gray-400">
-              © 2024 ReviewBoost AI. All rights reserved.
-            </p>
-
-            <div className="flex items-center gap-6">
-              <a
-                href="mailto:support@reviewboost.ai"
-                className="text-sm text-gray-400 hover:text-white transition flex items-center gap-2"
-              >
-                <Mail size={16} />
-                support@reviewboost.ai
-              </a>
-            </div>
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-gray-800 pt-8 md:flex-row md:items-center">
+          <p className="text-sm text-gray-400">© 2026 ReviewBoost AI. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="mailto:support@reviewboost.ai"
+              className="text-gray-400 transition hover:text-white"
+              aria-label="Email support"
+            >
+              <Mail size={18} />
+            </a>
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noreferrer"
+              className="text-gray-400 transition hover:text-white"
+              aria-label="Company website"
+            >
+              <Globe size={18} />
+            </a>
           </div>
         </div>
       </div>

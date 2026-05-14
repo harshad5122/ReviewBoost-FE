@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useUser, useAuthHydration, useLogout } from "@/lib/hooks";
 import { Menu, X, LogOut, BarChart3, Home, Building2, QrCode } from "lucide-react";
 import toast from "react-hot-toast";
+import SidebarAd from "@/components/ads/SidebarAd";
 
 interface SidebarItem {
   href: string;
@@ -104,6 +105,12 @@ export default function DashboardLayout({
 
             {/* User Info & Logout */}
             <div className="p-4 border-t border-white/10">
+              <div className="mb-4 rounded-lg border border-white/10 bg-slate-900/30 p-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-gray-500">
+                  Sponsored
+                </p>
+                <SidebarAd adSlot="8888888888" />
+              </div>
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-red-500/20 rounded-lg transition-colors"

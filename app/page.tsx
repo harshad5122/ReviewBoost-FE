@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Star, Zap, BarChart3, Smartphone, Lock, Globe } from "lucide-react";
+import AdBanner from "@/components/ads/AdBanner";
+import InArticleAd from "@/components/ads/InArticleAd";
+import ResponsiveAd from "@/components/ads/ResponsiveAd";
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,6 +23,52 @@ const item = {
 };
 
 export default function HomePage() {
+  const homeFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How does ReviewBoost AI help with Google reviews?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ReviewBoost AI transforms customer feedback into polished review drafts, shares review links with QR codes, and tracks conversion analytics so teams can improve review volume safely.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is ReviewBoost AI suitable for multi-location businesses?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Teams can manage multiple business profiles, generate location-specific review links, and monitor analytics from one dashboard.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does ReviewBoost AI support SEO growth?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. ReviewBoost AI provides optimized local landing pages and insights that help businesses improve organic visibility.",
+        },
+      },
+    ],
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "ReviewBoost AI",
+    description:
+      "AI-powered review and local SEO software for service businesses and multi-location teams.",
+    url: "https://reviewboost.ai",
+    email: "support@reviewboost.ai",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "San Francisco",
+      addressCountry: "US",
+    },
+  };
+
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
@@ -125,6 +174,15 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      <section className="bg-white px-6 py-8">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-gray-200 p-4 md:p-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Sponsored
+          </p>
+          <ResponsiveAd adSlot="1111111111" />
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -192,6 +250,15 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-8">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-gray-200 p-4 md:p-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Sponsored
+          </p>
+          <InArticleAd adSlot="2222222222" />
         </div>
       </section>
 
@@ -290,6 +357,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="bg-gray-50 px-6 py-8">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-gray-200 bg-white p-4 md:p-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Sponsored
+          </p>
+          <AdBanner adSlot="3333333333" />
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-24">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-10 text-center text-4xl font-bold text-black">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {[
+              {
+                q: "Can I use ReviewBoost AI without technical setup?",
+                a: "Yes. You can create your profile, generate QR links, and start collecting review-ready feedback in minutes.",
+              },
+              {
+                q: "Do you support agencies and franchises?",
+                a: "Yes. ReviewBoost AI is designed for single-location businesses, agencies, and multi-location franchises.",
+              },
+              {
+                q: "How quickly can I see results?",
+                a: "Most teams start seeing improved review submission rates within the first few weeks of active usage.",
+              },
+            ].map((item, idx) => (
+              <article key={idx} className="rounded-2xl border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-black">{item.q}</h3>
+                <p className="mt-2 text-gray-700">{item.a}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 px-6 bg-black text-white text-center">
         <motion.div
@@ -310,6 +413,18 @@ export default function HomePage() {
           </Link>
         </motion.div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homeFaqSchema).replace(/</g, "\\u003c"),
+        }}
+      />
     </main>
   );
 }

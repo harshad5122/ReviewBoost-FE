@@ -174,11 +174,11 @@ export default function LoginPage() {
           {/* Footer */}
           <p className="text-center text-gray-400 text-sm mt-6">
             By signing in, you agree to our{" "}
-            <Link href="#" className="text-blue-400 hover:text-blue-300">
+            <Link href="/terms" className="text-blue-400 hover:text-blue-300">
               Terms
             </Link>
             {" "}and{" "}
-            <Link href="#" className="text-blue-400 hover:text-blue-300">
+            <Link href="/privacy-policy" className="text-blue-400 hover:text-blue-300">
               Privacy Policy
             </Link>
           </p>

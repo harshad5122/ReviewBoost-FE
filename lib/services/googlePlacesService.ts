@@ -97,7 +97,6 @@ export const extractCategory = (types?: string[]): string => {
     store: "Store",
     supermarket: "Supermarket",
     bakery: "Bakery",
-    bank: "Bank",
   };
 
   for (const type of types) {

@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { getPublicBusiness, trackPublicEvent } from "@/lib/services/publicService";
-import { apiClient, handleApiError } from "@/lib/api";
+import { apiClient } from "@/lib/api";
 import { Star, Copy, ExternalLink, Loader2, AlertCircle } from "lucide-react";
 import toast from "react-hot-toast";
-import Head from "next/head";
 
 interface Business {
   _id: string;
@@ -17,6 +16,7 @@ interface Business {
   description?: string;
   googleReviewUrl?: string;
   address?: string;
+  phoneNumber?: string;
   rating?: number;
   totalRatings?: number;
 }
@@ -124,11 +124,6 @@ export default function ReviewPage() {
 
   return (
     <>
-      <Head>
-        <title>{business.businessName} - ReviewBoost</title>
-        <meta name="description" content={`Leave a review for ${business.businessName}`} />
-      </Head>
-
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
         <div className="max-w-2xl mx-auto">
           {/* Business Header */}
@@ -272,6 +267,11 @@ export default function ReviewPage() {
               {business.address && (
                 <p className="text-gray-400 text-sm">
                   <span className="text-gray-500">Address:</span> {business.address}
+                </p>
+              )}
+              {business.phoneNumber && (
+                <p className="text-gray-400 text-sm">
+                  <span className="text-gray-500">Phone:</span> {business.phoneNumber}
                 </p>
               )}
             </div>

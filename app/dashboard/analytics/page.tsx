@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { getBusinesses } from "@/lib/services/businessService";
 import { getBusinessAnalytics } from "@/lib/services/analyticsService";
@@ -16,26 +15,27 @@ interface Business {
 }
 
 interface AnalyticsData {
-  totalBusinesses: number;
   totalQRScans: number;
+  totalPageViews: number;
   totalReviewsGenerated: number;
   totalConversions: number;
   conversionRate: number;
-  averageRating: number;
 }
 
 export default function AnalyticsPage() {
-  const searchParams = useSearchParams();
-  const businessId = searchParams.get("business");
-
   const [businesses, setBusinesses] = useState<Business[]>([]);
-  const [selectedBusiness, setSelectedBusiness] = useState<string>(businessId || "");
+  const [selectedBusiness, setSelectedBusiness] = useState<string>("");
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
 
   useEffect(() => {
-    fetchBusinesses();
+    const businessFromUrl =
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.search).get("business") || ""
+        : "";
+    setSelectedBusiness(businessFromUrl);
+    fetchBusinesses(businessFromUrl);
   }, []);
 
   useEffect(() => {
@@ -44,11 +44,11 @@ export default function AnalyticsPage() {
     }
   }, [selectedBusiness, dateRange]);
 
-  const fetchBusinesses = async () => {
+  const fetchBusinesses = async (businessFromUrl?: string) => {
     try {
       const data = await getBusinesses();
       setBusinesses(data);
-      if (data.length > 0 && !businessId) {
+      if (data.length > 0 && !businessFromUrl) {
         setSelectedBusiness(data[0]._id);
       }
     } catch (error: any) {

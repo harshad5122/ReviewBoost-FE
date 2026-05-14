@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { getBusinesses } from "@/lib/services/businessService";
 import {
@@ -28,7 +27,6 @@ interface QRCode {
 }
 
 export default function QRCodesPage() {
-  const searchParams = useSearchParams();
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [qrCodes, setQrCodes] = useState<Record<string, QRCode>>({});
   const [isLoading, setIsLoading] = useState(true);
