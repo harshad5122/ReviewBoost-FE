@@ -42,6 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2712880469048850" crossorigin="anonymous"></script>
         <Navbar />
 
         {children}
